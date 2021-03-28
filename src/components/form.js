@@ -1,6 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 const Form = () => {
+    
+    // create appointment state
+    const [appointment, setAppointment] = useState({
+        pet: "",
+        owner: "",
+        date: "",
+        time: "",
+        symptoms: ""
+    })
+
+    // create change handler
+    const handleChange = e => {setAppointment({
+        ...appointment,
+        [e.target.name]: e.target.value
+    })}
+
+    // extract values
+    const { pet, owner, date, time, symptoms } = appointment;
+
     return (
         <Fragment>
             <h2>Create Appointment</h2>
@@ -12,6 +31,8 @@ const Form = () => {
                     name="pet"
                     className="u-full-width"
                     placeholder="Pet Name"
+                    onChange={handleChange}
+                    value={pet}
                 />
 
                 <label>Owner's Name</label>
@@ -20,6 +41,8 @@ const Form = () => {
                     name="owner"
                     className="u-full-width"
                     placeholder="Owner's Name"
+                    onChange={handleChange}
+                    value={owner}
                 />
                 
                 <label>Date</label>
@@ -27,6 +50,8 @@ const Form = () => {
                     type="date"
                     name="date"
                     className="u-full-width"
+                    onChange={handleChange}
+                    value={date}
                 />
 
                 <label>Time</label>
@@ -34,17 +59,22 @@ const Form = () => {
                     type="time"
                     name="time"
                     className="u-full-width"
+                    onChange={handleChange}
+                    value={time}
                 />
 
                 <label>Symptoms</label>
                 <textarea
                     className="u-full-width"
                     name="symptoms"
+                    onChange={handleChange}
+                    value={symptoms}
                 />
 
                 <button
                     type="submit"
-                    className="u-full-width button-primary">
+                    className="u-full-width button-primary"
+                    onChange={handleChange}>
                     Submit
                 </button>
             </form>
