@@ -11,6 +11,8 @@ const Form = () => {
         symptoms: ""
     })
 
+    const [error, setError] = useState(false)
+
     // create change handler
     const handleChange = e => {setAppointment({
         ...appointment,
@@ -20,11 +22,30 @@ const Form = () => {
     // extract values
     const { pet, owner, date, time, symptoms } = appointment;
 
+    // on submit
+    const submitAppointment = e => {
+        e.preventDefault();
+
+        // validating entries
+        if(pet.trim() === "" || owner.trim() === ""
+            || date.trim() === "" || time.trim() === ""
+            || symptoms === ""){
+            setError(true)
+            return;}
+        // assign ID
+
+        // create appointment
+
+        // reset form
+    }
+
     return (
         <Fragment>
             <h2>Create Appointment</h2>
 
-            <form>
+            { error ? <p className="alerta-error">All the fields are required</p>:null}
+            <form
+                onSubmit={submitAppointment}>
                 <label>Pet's Name</label>
                 <input
                     type="text"
