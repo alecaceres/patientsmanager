@@ -1,11 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Form from "./components/Form";
 import Appointment from "./components/Appointment"
 
 function App() {
 
+  // appointments on local storage
+  let initialAppointments = JSON.parse(localStorage.getItem("appointments"));
+  if (!initialAppointments) initialAppointments=[];
+
   // appointments array
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState(initialAppointments);
+
+  // useEffect for state changes
+  useEffect( ()=>{
+    if(initialAppointments)
+      localStorage.setItem("appointments", JSON.stringify(appointments))
+    else
+      localStorage.setItem("appointments", JSON.stringify([]))
+  }, [appointments])
 
   // add new appointment
   const createAppointment = appointment => {
