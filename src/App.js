@@ -17,7 +17,7 @@ function App() {
       localStorage.setItem("appointments", JSON.stringify(appointments))
     else
       localStorage.setItem("appointments", JSON.stringify([]))
-  }, [appointments])
+  }, [appointments, initialAppointments])
 
   // add new appointment
   const createAppointment = appointment => {
