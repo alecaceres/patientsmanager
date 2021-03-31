@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import {v4 as uuid} from "uuid";
 
 const Form = () => {
     
@@ -32,8 +33,13 @@ const Form = () => {
             || symptoms === ""){
             setError(true)
             return;}
-        // assign ID
 
+        // remove validation message
+        setError(false);
+
+        // assign ID
+        appointment.id = uuid()
+        console.log(appointment)
         // create appointment
 
         // reset form
